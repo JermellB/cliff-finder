@@ -6,12 +6,12 @@ import rasterio
 import multiprocessing
 import cv2
 from tqdm import tqdm
-from random import shuffle
 from pyproj import Geod
 import shutil
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.colors import LightSource
+import secrets
 
 
 # lat, lon, blackout area radius
@@ -181,7 +181,7 @@ def main():
 
 
   all_tifs = glob.glob(topo_database_dir + "*/*.tif")
-  shuffle(all_tifs)
+  secrets.SystemRandom().shuffle(all_tifs)
   num_processes = 20
 
   with multiprocessing.Pool(processes=num_processes) as pool:
